@@ -1,34 +1,55 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/require-default-props */
-import React from 'react';
-
-const imgWithClick = { cursor: 'pointer' };
+import React, { useState } from 'react';
+import ImageRotationControl from './ImageRotationControl';
 
 const Photo = (props: any) => {
   const {
-    index, onClick, photo, margin, direction, top, left,
+    index, photo, margin, onRotationChanged,
   }:
-  { index?: any, onClick?: any, photo?: any,
-       margin?: any, direction?: any, top?: any, left?: any, item?: any } = props;
-  const imgStyle = margin;
-  if (direction === 'column') {
-    imgStyle.position = 'absolute';
-    imgStyle.left = left;
-    imgStyle.top = top;
-  }
+  { index: number, onClick?: any, photo?: any,
+       margin?: number, direction?: any, top?: number, left?: number, item?: any,
+        onRotationChanged?: any } = props;
 
-  const handleClick = (event: any) => {
-    onClick(event, { photo, index });
+  const [angle, setAngle] = useState(photo.angle);
+
+  const cont = {
+    backgroundColor: '#eee',
+    cursor: 'pointer',
+    overflow: 'hidden',
+    position: 'relative',
+    left: 0,
+    top: 0,
+  } as React.CSSProperties;
+
+  const rotateLeft = () => {
+    photo.angle -= 90;
+    setAngle(angle - 90);
+    onRotationChanged(photo);
+  };
+
+  const rotateRight = () => {
+    photo.angle += 90;
+    setAngle(angle + 90);
+    onRotationChanged(photo, index);
   };
 
   return (
-    <img
-      style={{ marginRight: 2, transform: `rotate(${photo.angle}deg)` }}
-      {...photo}
-      alt="img"
-    />
+    <div
+      style={{
+        margin, height: photo.height, width: photo.width, ...cont,
+      }}
+    >
+      <img
+        style={{
+          marginRight: 2, height: photo.height, width: photo.width, transform: `rotate(${angle}deg)`,
+        }}
+        {...photo}
+        alt="img"
+      />
+      <ImageRotationControl
+        onLeftRotation={rotateLeft}
+        onRightRotation={rotateRight}
+      />
+    </div>
   );
 };
 

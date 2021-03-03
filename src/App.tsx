@@ -1,18 +1,11 @@
 import React from 'react';
-// import Gallery from 'react-photo-gallery';
 import './App.css';
-// import Images from './data/Images';
-// import DynamicGallery from './gallery/DynamicGallery';
-import DynamicGalleryTS from './gallery/DynamicGalleryTS';
-// import GalleryJS from './galleryjs/GalleryJS';
-// import GalleryJS from './galleryjs/GalleryJS';
-// import Gallery from './gallery/Gallery';
+import SortableGallery from './gallery/SortableGallery';
 
 function App() {
   return (
     <div className="App">
-      <DynamicGalleryTS />
-      {/* <GalleryJS /> */}
+      <SortableGallery />
     </div>
   );
 }
