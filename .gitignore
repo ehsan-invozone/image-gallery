@@ -7,6 +7,7 @@
 
 .eslintrc.json
 .eslintcache
+.eslintcache
 
 # testing
 /coverage

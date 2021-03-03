@@ -18,14 +18,14 @@ export default function Gallery() {
     <GridContextProvider onChange={onChange}>
       <GridDropZone
         id="gallery"
-        boxesPerRow={4}
+        boxesPerRow={2}
         rowHeight={150}
         style={{ height: '400px' }}
       >
         {images.map((image) => (
-          <GridItem key={image.id}>
+          <GridItem key={image.src}>
             <div>
-              <img className="image-item" src={image.imagePath} alt="Gallery Item" />
+              <img className="image-item" src={image.src} alt="Gallery Item" />
             </div>
           </GridItem>
         ))}
