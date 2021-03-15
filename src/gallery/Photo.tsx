@@ -3,7 +3,7 @@ import ImageRotationControl from './ImageRotationControl';
 
 const Photo = (props: any) => {
   const {
-    index, photo, margin, onRotationChanged,
+    photo, margin, onRotationChanged,
   }:
   { index: number, onClick?: any, photo?: any,
        margin?: number, direction?: any, top?: number, left?: number, item?: any,
@@ -21,15 +21,26 @@ const Photo = (props: any) => {
   } as React.CSSProperties;
 
   const rotateLeft = () => {
-    photo.angle -= 90;
-    setAngle(angle - 90);
+    if (photo.angle - 90 === -360) {
+      photo.angle = 0;
+      setAngle(0);
+    } else {
+      photo.angle -= 90;
+      setAngle(angle - 90);
+    }
+
     onRotationChanged(photo);
   };
 
   const rotateRight = () => {
-    photo.angle += 90;
-    setAngle(angle + 90);
-    onRotationChanged(photo, index);
+    if (photo.angle + 90 === 360) {
+      photo.angle = 0;
+      setAngle(0);
+    } else {
+      photo.angle += 90;
+      setAngle(angle + 90);
+    }
+    onRotationChanged(photo);
   };
 
   return (

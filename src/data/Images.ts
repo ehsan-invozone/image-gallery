@@ -29,7 +29,6 @@ const Images: ImageModel[] = [
   {
     id: 7, src: 'https://d540vms5r2s2d.cloudfront.net/mad/uploads/mad_blog_5d1ca4198fff61562158105.png', width: 4, height: 3, angle: 0,
   },
-
   // {
   //   src: 'https://i.ytimg.com/vi/7lJhs1PwmLE/mqdefault.jpg', width: 4, height: 1,
   // },
